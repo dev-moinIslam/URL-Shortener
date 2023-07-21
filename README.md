@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# React Link Shortener
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+Welcome to the React Link Shortener repository! This is a web application built using React that allows users to shorten long URLs into more manageable, shorter links. It's a handy tool for sharing links, especially on social media platforms with character limitations.
 
-### `npm start`
+In this README, I'll provide an overview of the project, explain how to set it up locally, and give a brief guide on how to use the application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- User can shorten long URL
+- When user update long URL its equivalent short URL also updated
+- User can also delete shorten URL
+- User can find all created Short URL in List page
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run this project locally, follow these steps:
 
-### `npm run build`
+1. **Clone the repository:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/Moin3/URL-Shortener.git
+   cd URL-Shortener    
+# 
+2. **Install dependencies:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   npm install   
+# 
+3. **Start the development server:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm start
+#
+The application will be accessible at http://localhost:3000.
+#
 
-### `npm run eject`
+# Usage
+1. **Shorten a Link:**
+- On the home page, enter the long URL you want to shorten in the input field.
+- Click the "Shorten" button to generate the short link.
+- click copy to copy the Short link
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Manage Short Links:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- On Edit page you can find All searched Long Url and Short Url 
+- You can Delete Short Url and Update the Long URL
+- When you Update long URL the equivalent Short Url also updated
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Access Shortened Links:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- In list page you can find all Shorten URL which you have created before
+- Simply click on the shortened link to access the original long URL.
 
-## Learn More
+# Acknowledgments
+Special thanks to Foyzul Karim,Senior Software Engineer at Mentorloop and Sumit Saha,The founder of Analyzen to take this great initiative to help junior developer.
+##
+Thank you for using the React Link Shortener! If you have any questions or need further assistance, feel free to reach out to us.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Happy Link Shortening!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+ 
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
