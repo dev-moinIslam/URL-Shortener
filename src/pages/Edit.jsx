@@ -58,9 +58,28 @@ const Edit = () => {
         const fetchData=async ()=>{
             try{
                 setLoading(true)
-                const res=await axios(`https://api.shrtco.de/v2/shorten?url=${inputValue}`)
-                const {full_short_link}=res.data.result
-                setUpdatedShortenLink(full_short_link)
+                // const res=await axios(`https://api.shrtco.de/v2/shorten?url=${inputValue}`)
+                // const {full_short_link}=res.data.result
+                // setUpdatedShortenLink(full_short_link)
+
+                const response = await axios.post(
+                    'https://t.ly/api/v1/link/shorten',
+                    {
+                      long_url: inputValue,
+                      domain: 'https://t.ly/',
+                      expire_at_datetime: '2035-01-17 15:00:00',
+                      public_stats: true,
+                    },
+                    {
+                      headers: {
+                        Authorization: 'Bearer 5LOEC4XD4JUvQrVAkuYoHTqWEEOrTvFuOjS8RHsQUHE7aCs28p6WINFlQMg3',
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                      },
+                    }
+                  );
+                  const { short_url } = response.data;
+                  setUpdatedShortenLink(short_url);
                 
                 
             }catch(err){
