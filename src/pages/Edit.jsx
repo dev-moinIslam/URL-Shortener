@@ -177,6 +177,7 @@ const Edit = () => {
                                         background: '-webkit-linear-gradient(#833ab4, #fd1d1d, #fcb045)',
                                         '-webkit-background-clip': 'text',
                                         '-webkit-text-fill-color': 'transparent',
+                                        textAlign:'center'
                                     }}
                                 >
                                     There is no available data to edit
