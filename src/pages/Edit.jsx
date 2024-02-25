@@ -4,7 +4,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { toast } from 'react-toastify'
+import  toast  from 'react-hot-toast'
 
 
 

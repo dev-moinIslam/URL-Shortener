@@ -1,9 +1,8 @@
 import { Outlet } from 'react-router-dom'
+import  { Toaster } from 'react-hot-toast';
 import './App.css'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header'
-import AnimatedBg from './components/AnimatedBg'
+
 
 /* ------------- All child component of App are Shown in Outlet ------------- */
 function App() {
@@ -11,8 +10,7 @@ function App() {
     <>
       <Header/>
       <Outlet/>
-      <AnimatedBg/>
-      <ToastContainer/>
+      <Toaster />
     </>
   )
 }

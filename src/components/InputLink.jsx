@@ -1,11 +1,11 @@
-import { Box, Button, Stack, TextField } from '@mui/material'
+import { Box, Button, Stack } from '@mui/material'
 import React, { useState } from 'react'
-
-
 import { styled, alpha } from "@mui/material/styles";
 import { SiCurl } from "react-icons/si";
 import InputBase from "@mui/material/InputBase";
 
+
+///////////////Input Box style Start/////////////
 const LongUrlInputBox = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -53,7 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
+///////////////Input Box style End/////////////
 
 
 const InputLink = ({setInputValue}) => {
@@ -88,7 +88,11 @@ const InputLink = ({setInputValue}) => {
                 </LongUrlInputBox>
               </Box>
                
-            <Button onClick={handleClick} variant="contained" sx={{bgcolor:'purple'}}>Shorten</Button>           
+            <Button onClick={handleClick} variant="contained" 
+              sx={{bgcolor: "orangered",fontFamily:'Noto Serif',
+              "&:hover":{
+                bgcolor: "#8E0E00"  
+              }}}>Shorten</Button>           
          </Stack>
     </>
   )

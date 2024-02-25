@@ -1,9 +1,63 @@
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Stack, TextField, Typography ,Box} from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { toast } from "react-toastify";
+import  toast  from "react-hot-toast";
+import { styled, alpha } from "@mui/material/styles";
+import { SiCurl } from "react-icons/si";
+import InputBase from "@mui/material/InputBase";
 
+
+////////////////////////////Input Link Style//////////////////////////////
+const LongUrlInputBox = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(3),
+    width: "auto",
+    height:50,
+    display:'flex',
+    alignItems:'center',
+    fontFamily: "Noto Serif", 
+
+  },
+  color: "white",
+  fontStyle:'italic',
+  placeholdertextcolor:"blue"
+}));
+
+const ShrtLinkIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
+    },
+  },
+}));
+
+////////////////////////////Input Link Style End/////////////////////////////
 
 /* -------------------------------------------------------------------------- */
 /*                    here {inputValue} refers the Long Url                   */
@@ -111,30 +165,22 @@ const ShortResult = ({ inputValue }) => {
   }, [inputValue]);
 
   if (loading) {
-    return <Typography sx={{ fontSize: "2rem" }}>Loading...</Typography>;
+    return (
+    <Typography 
+      sx={{ 
+         fontSize: "2rem",
+         background: '-webkit-linear-gradient(#833ab4, #fd1d1d, #fcb045)',
+        '-webkit-background-clip': 'text',
+        '-webkit-text-fill-color': 'transparent',
+       }}>
+      Loading...
+    </Typography>
+    );
   }
 
   if (error) {
-    return <Typography sx={{ fontSize: "2rem" }}>Something Wrong!</Typography>;
+    return <Typography sx={{ fontSize: "2rem",color: 'linear-gradient(to right, #cb356b, #bd3f32)' }}>Something Wrong!</Typography>;
   }
-
-  /* ------------------------ TextField Style property ------------------------ */
-  let style = {
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "white", // Change the border color here
-      },
-      "&:hover fieldset": {
-        borderColor: "skyblue", // Change the border color on hover here
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "white", // Change the border color when focused here
-      },
-    },
-    "& .MuiInputBase-input": {
-      color: "white", // Change this to the desired text color
-    },
-  };
 
   return (
     <>
@@ -144,16 +190,26 @@ const ShortResult = ({ inputValue }) => {
           direction="row"
           useFlexGap
           flexWrap="wrap"
+          sx={{mr:5}}
+          
         >
           {/* ------------------------- Shorten Url field Start ------------------------ */}
-          <TextField
-            sx={style}
-            id="outlined-read-only-input"
-            defaultValue={`${shortenLink}`}
-            InputProps={{
-              readOnly: true,
-            }}
-          />
+            <Box  
+                sx={{
+                  display: { xs: "flex" },
+                  flexGrow: 1,
+                }}
+              >
+                 <LongUrlInputBox>
+                  <ShrtLinkIconWrapper>
+                    <SiCurl />
+                  </ShrtLinkIconWrapper>
+                  <StyledInputBase
+                    inputProps={{ "aria-label": "search",style: { fontFamily:'Noto Serif' } ,readOnly: true,}}
+                    defaultValue={`${shortenLink}`}
+                  />
+                </LongUrlInputBox>
+              </Box>
           {/* -------------------------- Shorten Url field End ------------------------- */}
 
           {/* ----------- Copy to clipboard funtionality add to button Start ----------- */}
@@ -162,7 +218,11 @@ const ShortResult = ({ inputValue }) => {
               variant="contained"
               onClick={handleCopyTex}
               size="small"
-              sx={{ bgcolor: "purple" }}
+              sx={{ bgcolor: "orangered",fontFamily:'Noto Serif',
+                "&:hover":{
+                  bgcolor: "#8E0E00"  
+                }
+              }}
             >
               Copy
             </Button>

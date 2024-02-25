@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 /* ----------------------------- MUI COMPONENTS ----------------------------- */
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,14 +13,6 @@ import { useLocation } from "react-router-dom";
 /* -------------------------------- MUI ICON -------------------------------- */
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
-
-
-
-
-
-
-
-
 
 
 
@@ -49,6 +40,7 @@ const Header = () => {
             borderRradius: "16px",
             backdropFilter: "blur(5px)",
             WebkitBackdropFilter: "blur(5px)",
+            
           }}
         >
           <Container maxWidth="xl">
@@ -63,38 +55,34 @@ const Header = () => {
                 }}
               >
               </Box>
-              
-
-
-
-                <Box
-                  sx={{
-                    display: { xs: "flex", md: "flex" },
-                    flexGrow: 1,
-                    justifyContent: "center",
-                  }}
-                >
-                  {mainPages.map((page, index) => (
-                    <Button
-                      component={Link}
-                      key={index}
-                      to={page.path}
-                      sx={{
-                        my: 1,
-                        color:
-                          location.pathname === `${page.path}`
-                            ? "GrayText"
-                            : "black",
-                        fontFamily: "Poppins",
-                        fontWeight: 400,
-                        textTransform: "none",
-                        fontSize: { xs: "11px", sm: "14px" },
-                      }}
-                    >
-                      {page.label}
-                    </Button>
-                  ))}
-                </Box>
+              <Box
+                sx={{
+                  display: { xs: "flex", md: "flex" },
+                  flexGrow: 1,
+                  justifyContent: "center",
+                }}
+              >
+                {mainPages.map((page, index) => (
+                  <Button
+                    component={Link}
+                    key={index}
+                    to={page.path}
+                    sx={{
+                      my: 1,
+                      color:
+                        location.pathname === `${page.path}`
+                          ? "GrayText"
+                          : "orangered",
+                      fontFamily:'Noto Serif',
+                      fontWeight: 500,
+                      textTransform: "none",
+                      fontSize: { xs: "11px", sm: "14px" },
+                    }}
+                  >
+                    {page.label}
+                  </Button>
+                ))}
+              </Box>
             </Toolbar>
           </Container>
         </AppBar>
