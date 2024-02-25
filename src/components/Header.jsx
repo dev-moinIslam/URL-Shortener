@@ -10,16 +10,12 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-/* -------------------------------- MUI ICON -------------------------------- */
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
-
 
 
 const mainPages = [
-  { label: "Home", path: "/", icon: <HomeOutlinedIcon /> },
-  { label: "Edit", path: "/edit", icon: <HomeOutlinedIcon /> },
-  { label: "History", path: "/list", icon: <AccountBoxOutlinedIcon /> },
+  { label: "Home", path: "/" },
+  { label: "Edit", path: "/edit" },
+  { label: "History", path: "/list"},
 ];
 
 const Header = () => {
@@ -45,9 +41,13 @@ const Header = () => {
         >
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <Typography sx={{color:'orangered',fontFamily: "Noto Serif",fontStyle:'italic',fontWeight:600,fontSize:'25px'}}>
-                  Shorti<span style={{background:'orangered',color:'white',padding:'2px 5px',borderRadius:'5px'}}>fy</span>  
-              </Typography>
+               {/* /* ------------------------- Logo text start ------------------------ */}
+              <Link to="/" style={{textDecoration:'none'}}>
+                <Typography sx={{color:'orangered',fontFamily: "Noto Serif",fontStyle:'italic',fontWeight:600,fontSize:'25px'}}>
+                    Shorti<span style={{background:'orangered',color:'white',padding:'2px 5px',borderRadius:'5px'}}>fy</span>  
+                </Typography>
+              </Link>
+              {/* /* ------------------------- Logo text end ------------------------ */}
               <Box
                 sx={{
                   display: { xs: "none", sm: "flex", md: "flex" },
@@ -62,6 +62,7 @@ const Header = () => {
                   justifyContent: "center",
                 }}
               >
+                {/* /* ------------------------- Menu start ------------------------ */}
                 {mainPages.map((page, index) => (
                   <Button
                     component={Link}
@@ -70,9 +71,9 @@ const Header = () => {
                     sx={{
                       my: 1,
                       color:
-                        location.pathname === `${page.path}`
-                          ? "GrayText"
-                          : "orangered",
+                      location.pathname === `${page.path}`
+                        ? "GrayText"
+                        : "orangered",
                       fontFamily:'Noto Serif',
                       fontWeight: 500,
                       textTransform: "none",
@@ -82,6 +83,7 @@ const Header = () => {
                     {page.label}
                   </Button>
                 ))}
+                {/* /* ------------------------- Menu End ------------------------ */}
               </Box>
             </Toolbar>
           </Container>

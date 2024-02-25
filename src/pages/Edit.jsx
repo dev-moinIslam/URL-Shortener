@@ -167,7 +167,6 @@ const Edit = () => {
   return (
     <>
         <Box sx={{height:"calc(100vh + 60px)",display:'flex',justifyContent:'center',alignItems:"center",background: 'linear-gradient(to right, #8e0e00, #1f1c18)'}}>
-            
                         {
                             (rows==null) ? (
                                 <>

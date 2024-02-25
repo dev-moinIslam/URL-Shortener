@@ -158,28 +158,38 @@ const ShortResult = ({ inputValue }) => {
 
   
 
-  useEffect(() => {
-    if (inputValue.length) {
-      fetchData();
-    }
-  }, [inputValue]);
+    useEffect(() => {
+      if (inputValue.length) {
+        fetchData();
+      }
+    }, [inputValue]);
 
   if (loading) {
     return (
-    <Typography 
-      sx={{ 
-         fontSize: "2rem",
-         background: '-webkit-linear-gradient(#833ab4, #fd1d1d, #fcb045)',
-        '-webkit-background-clip': 'text',
-        '-webkit-text-fill-color': 'transparent',
-       }}>
-      Loading...
-    </Typography>
+        <Typography 
+          sx={{ 
+            fontSize: "2rem",
+            background: '-webkit-linear-gradient(#833ab4, #fd1d1d, #fcb045)',
+            '-webkit-background-clip': 'text',
+            '-webkit-text-fill-color': 'transparent',
+          }}>
+          Loading...
+        </Typography>
     );
   }
 
   if (error) {
-    return <Typography sx={{ fontSize: "2rem",color: 'linear-gradient(to right, #cb356b, #bd3f32)' }}>Something Wrong!</Typography>;
+    return (
+        <Typography 
+          sx={{ 
+            fontSize: "2rem",
+            background: '-webkit-linear-gradient(#833ab4, #fd1d1d, #fcb045)',
+            '-webkit-background-clip': 'text',
+            '-webkit-text-fill-color': 'transparent',
+          }}>
+           Something went wrong!
+        </Typography>
+  );
   }
 
   return (

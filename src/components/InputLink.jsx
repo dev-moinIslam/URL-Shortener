@@ -57,6 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const InputLink = ({setInputValue}) => {
+  
     const [value,setValue]=useState('')
 
     const handleClick=()=>{
@@ -75,7 +76,7 @@ const InputLink = ({setInputValue}) => {
                   flexGrow: 1,
                 }}
               >
-                 <LongUrlInputBox>
+                <LongUrlInputBox>
                   <ShrtLinkIconWrapper>
                     <SiCurl />
                   </ShrtLinkIconWrapper>
@@ -89,11 +90,14 @@ const InputLink = ({setInputValue}) => {
               </Box>
                
             <Button onClick={handleClick} variant="contained" 
-              sx={{bgcolor: "orangered",fontFamily:'Noto Serif',
-              "&:hover":{
-                bgcolor: "#8E0E00"  
-              }}}>Shorten</Button>           
-         </Stack>
+              sx={{
+                 bgcolor: "orangered",
+                 fontFamily:'Noto Serif',
+                 "&:hover":{
+                 bgcolor: "#8E0E00"  
+              }}
+            }>Shorten</Button>           
+        </Stack>
     </>
   )
 }
