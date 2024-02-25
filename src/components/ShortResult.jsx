@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 
+
 /* -------------------------------------------------------------------------- */
 /*                    here {inputValue} refers the Long Url                   */
 /* -------------------------------------------------------------------------- */
@@ -21,30 +22,49 @@ const ShortResult = ({ inputValue }) => {
   /*   Data fetch and convert Long URL to Shorten URL and store Local Storage   */
   /* -------------------------------------------------------------------------- */
 
-  // https://t.ly/links:::use this site api
+  
 
   const fetchData = async () => {
     try {
       setLoading(true);
-
+      // migrated to https://shrtlnk.dev/developer/ for shortLink api 
       const response = await axios.post(
-        'https://t.ly/api/v1/link/shorten',
-        {
-          long_url: inputValue,
-          domain: 'https://t.ly/',
-          expire_at_datetime: '2035-01-17 15:00:00',
-          public_stats: true,
-        },
-        {
-          headers: {
-            Authorization: 'Bearer 5LOEC4XD4JUvQrVAkuYoHTqWEEOrTvFuOjS8RHsQUHE7aCs28p6WINFlQMg3',
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        }
-      );
-      const { short_url } = response.data;
-      setShortenLink(short_url);
+            'https://shrtlnk.dev/api/v2/link',{url: inputValue},
+            {
+              headers: {
+                "api-key":"meO8D8bCEsHOgnTn1xI42WdQXNeBYtUOn46c33zrJhH0R",
+                Accept: 'application/json',
+                "Content-Type": 'application/json'
+              },
+            }
+          );
+
+          const { shrtlnk } = response.data;
+          setShortenLink(shrtlnk);
+    
+
+////////////////////////////////////////////////////////////////////////////////////
+
+      // https://t.ly/links:::use this site api
+      // const response = await axios.post(
+      //   'https://t.ly/api/v1/link/shorten',
+      //   {
+      //     long_url: inputValue,
+      //     domain: 'https://t.ly/',
+      //     expire_at_datetime: '2035-01-17 15:00:00',
+      //     public_stats: true,
+      //   },
+      //   {
+      //     headers: {
+      //       Authorization: 'Bearer 5LOEC4XD4JUvQrVAkuYoHTqWEEOrTvFuOjS8RHsQUHE7aCs28p6WINFlQMg3',
+      //       'Content-Type': 'application/json',
+      //       Accept: 'application/json',
+      //     },
+      //   }
+      // );
+      // const { short_url } = response.data;
+      // setShortenLink(short_url);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
       // add urlData to localStorage
       let urlDatas=await JSON.parse(localStorage.getItem("urlDatas")  || "[]" )
@@ -52,7 +72,7 @@ const ShortResult = ({ inputValue }) => {
       let urlData={
           id:new Date().getTime().toString(),
           longUrl:`${inputValue}`,
-          sortUrl:`${short_url}`
+          sortUrl:`${shrtlnk}`
       }
       urlDatas.push(urlData)
       localStorage.setItem("urlDatas",JSON.stringify(urlDatas))
@@ -67,14 +87,13 @@ const ShortResult = ({ inputValue }) => {
       let urlDataset={
           id:new Date().getTime().toString(),
           longUrl:`${inputValue}`,
-          sortUrl:`${short_url}`
+          sortUrl:`${shrtlnk}`
       }
       urlDataSets.push(urlDataset)
       localStorage.setItem("urlDataSets",JSON.stringify(Object.freeze(urlDataSets)))
       
       // When we update or delete short link to from 
       // edit page the Short Link would not be delete or change in List page Funtionality:END
-
     } catch (error) {
       setError(error);
     } finally {
