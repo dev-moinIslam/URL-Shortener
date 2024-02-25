@@ -167,214 +167,119 @@ const Edit = () => {
   return (
     <>
         <Box sx={{height:"calc(100vh + 60px)",display:'flex',justifyContent:'center',alignItems:"center",background: 'linear-gradient(to right, #8e0e00, #1f1c18)'}}>
-            {
-                (inputValue=='') ? (
-                    <>
-                       <Typography
-                            sx={{ 
-                                fontSize: "2rem",
-                                background: '-webkit-linear-gradient(#833ab4, #fd1d1d, #fcb045)',
-                            '-webkit-background-clip': 'text',
-                            '-webkit-text-fill-color': 'transparent',
-                            }}
-                        >
-                            There is no available data
-                        </Typography>
-                    </>
-                ) : (
-                    <>
-                        <Paper sx={{width:{xs:'95%',sm:'90%',md:'80%'}}} >
-                            <TableContainer sx={{maxHeight:'450px',fontFamily: 'Noto Serif',background: 'linear-gradient(to right, #cb356b, #bd3f32)'}}>
-                                <Table stickyHeader>
-                                {/* ---------------------------- Start table head ---------------------------- */}
-                                    <TableHead>
-                                        <TableRow>
-                                            {
-                                                columns && columns.map((column)=>(
-                                                    <TableCell sx={{bgcolor:'gray',color:'white',fontFamily: 'Noto Serif',fontWeight:'500',letterSpacing:'2px',fontSize:'15px'}} key={column.id}>{column.name}</TableCell>
-                                                ))
-                                            }
-                                        </TableRow>
-                                    </TableHead>
-                                    {/* ----------------------------- End table head ----------------------------- */}
+            
+                        {
+                            (rows==null) ? (
+                                <>
+                                <Typography 
+                                    sx={{ 
+                                        fontSize: "2rem",
+                                        background: '-webkit-linear-gradient(#833ab4, #fd1d1d, #fcb045)',
+                                        '-webkit-background-clip': 'text',
+                                        '-webkit-text-fill-color': 'transparent',
+                                    }}
+                                >
+                                    There is no available data to edit
+                                </Typography>
+                                </>
+                            ) : (
+                                <>
+                                <Paper sx={{width:{xs:'95%',sm:'90%',md:'80%'}}} >
+                                    <TableContainer sx={{maxHeight:'450px',fontFamily: 'Noto Serif',background: 'linear-gradient(to right, #cb356b, #bd3f32)'}}>
+                                        <Table stickyHeader>
+                                            {/* ---------------------------- Start table head ---------------------------- */}
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            {
+                                                                columns && columns.map((column)=>(
+                                                                    <TableCell sx={{bgcolor:'gray',color:'white',fontFamily: 'Noto Serif',fontWeight:'500',letterSpacing:'2px',fontSize:'15px'}} key={column.id}>{column.name}</TableCell>
+                                                                ))
+                                                            }
+                                                        </TableRow>
+                                                    </TableHead>
+                                                  {/* ----------------------------- End table head ----------------------------- */}
+                                               { /* ---------------------------- Start Table body ---------------------------- */}
+                                                    <TableBody>
+                                                {
+                                                    rows && rows.map((row,i)=>{
+                                                        return(
+                                                            <TableRow key={row.id}>
+                                                                <TableCell sx={{color:'wheat'}}>{i+1}</TableCell>
+                                                                {/* -------------------------------------------------------------------------- */}
+                                                                {/*                    Long URL table Column cell start Here                   */}
+                                                                {/* -------------------------------------------------------------------------- */}
+                                                                <TableCell key={row.id} sx={{color:'whitesmoke'}}>
+                                                                    <Stack direction="row" spacing={2} sx={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'15px'}}>
+                                                                        {row.longUrl}
+                                                                        <Box component={'div'}>
+                                                                            <Paper sx={{bgcolor:'whitesmoke'}} component={Button} onClick={()=>editUrl(row.id)} ><EditIcon sx={{fontSize:'20px',color:'green',cursor:'pointer'}}/></Paper>
+                                                                            <Dialog open={open} onClose={closePopup} fullWidth maxWidth="sm">
+                                                                            <DialogTitle>UPDATE LONG URL  <IconButton onClick={closePopup} style={{float:'right'}}><CloseIcon color="primary"/></IconButton>  </DialogTitle>
+                                                                                <DialogContent>
+                                                                                    <Stack spacing={2} margin={2}>
+                                                                                    <TextField variant="outlined" value={inputValue} onChange={(e)=>setInputValue(e.target.value)}></TextField>
+                                                                                    <Button onClick={handleSubmit} color="primary" variant="contained">Submit</Button>
+                                                                                    </Stack>
+                                                                                </DialogContent>
+                                                                            </Dialog> 
+                                                                        </Box>
+                                                                    </Stack>
+                                                                </TableCell>
+                                                                {/* -------------------------------------------------------------------------- */}
+                                                                {/*                     Long URL table Column cell End Here                    */}
+                                                                {/* -------------------------------------------------------------------------- */}
 
-                                { /* ---------------------------- Start Table body ---------------------------- */}
-                                    <TableBody>
-                                        {
-                                            rows && rows.map((row,i)=>{
-                                                return(
-                                                    <TableRow key={row.id}>
-                                                        <TableCell sx={{color:'wheat'}}>{i+1}</TableCell>
-                                                        {/* -------------------------------------------------------------------------- */}
-                                                        {/*                    Long URL table Column cell start Here                   */}
-                                                        {/* -------------------------------------------------------------------------- */}
-                                                        <TableCell key={row.id} sx={{color:'whitesmoke'}}>
-                                                            <Stack direction="row" spacing={2} sx={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'15px'}}>
-                                                                {row.longUrl}
-                                                                <Box component={'div'}>
-                                                                    <Paper sx={{bgcolor:'whitesmoke'}} component={Button} onClick={()=>editUrl(row.id)} ><EditIcon sx={{fontSize:'20px',color:'green',cursor:'pointer'}}/></Paper>
-                                                                    <Dialog open={open} onClose={closePopup} fullWidth maxWidth="sm">
-                                                                    <DialogTitle>UPDATE LONG URL  <IconButton onClick={closePopup} style={{float:'right'}}><CloseIcon color="primary"/></IconButton>  </DialogTitle>
-                                                                        <DialogContent>
-                                                                            <Stack spacing={2} margin={2}>
-                                                                            <TextField variant="outlined" value={inputValue} onChange={(e)=>setInputValue(e.target.value)}></TextField>
-                                                                            <Button onClick={handleSubmit} color="primary" variant="contained">Submit</Button>
-                                                                            </Stack>
-                                                                        </DialogContent>
-                                                                    </Dialog> 
-                                                                </Box>
-                                                            </Stack>
-                                                        </TableCell>
-                                                        {/* -------------------------------------------------------------------------- */}
-                                                        {/*                     Long URL table Column cell End Here                    */}
-                                                        {/* -------------------------------------------------------------------------- */}
+                                                                {/* -------------------------------------------------------------------------- */}
+                                                                {/*                  Shorten URL table Column cell start Here                  */}
+                                                                {/* -------------------------------------------------------------------------- */}
+                                                                <TableCell key={row.id-1} sx={{color:'whitesmoke'}}>
+                                                                    <Stack direction="row" spacing={2} sx={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'15px',cursor:'pointer'}}>
+                                                                        {row.sortUrl}
+                                                                        <Box component={'div'}>
+                                                                            {
+                                                                                row.disable ? 
+                                                                                <Paper component={Button} sx={{bgcolor:'whitesmoke'}} ><DeleteOutlineIcon sx={{fontSize:'20px',color:'gray'}}/></Paper>
+                                                                                :
+                                                                                <Paper component={Button} key={row.id}  onClick={()=>openDltPopup(row.id)} ><DeleteOutlineIcon sx={{fontSize:'20px',color:'orangered'}}/></Paper>
 
-                                                        {/* -------------------------------------------------------------------------- */}
-                                                        {/*                  Shorten URL table Column cell start Here                  */}
-                                                        {/* -------------------------------------------------------------------------- */}
-                                                        <TableCell key={row.id-1} sx={{color:'whitesmoke'}}>
-                                                            <Stack direction="row" spacing={2} sx={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'15px',cursor:'pointer'}}>
-                                                                {row.sortUrl}
-                                                                <Box component={'div'}>
-                                                                    {
-                                                                        row.disable ? 
-                                                                        <Paper component={Button} sx={{bgcolor:'whitesmoke'}} ><DeleteOutlineIcon sx={{fontSize:'20px',color:'gray'}}/></Paper>
-                                                                        :
-                                                                        <Paper component={Button} key={row.id}  onClick={()=>openDltPopup(row.id)} ><DeleteOutlineIcon sx={{fontSize:'20px',color:'orangered'}}/></Paper>
-
-                                                                    }
-                                                                    <Dialog
-                                                                        open={dltOpen}
-                                                                        onClose={closeDltPopup}
-                                                                        aria-labelledby="alert-dialog-title"
-                                                                        aria-describedby="alert-dialog-description"
-                                                                    >
-                                                                        <DialogContent>
-                                                                        <DialogContentText id="alert-dialog-description">
-                                                                        Do You want to delete Shorten Url?
-                                                                        </DialogContentText>
-                                                                        </DialogContent>
-                                                                        <DialogActions>
-                                                                        <Button onClick={closeDltPopup}>NO</Button>
-                                                                        <Button onClick={dltShortUrl} autoFocus>
-                                                                            YES
-                                                                        </Button>
-                                                                        </DialogActions>
-                                                                    </Dialog> 
-                                                                </Box>
-                                                                
-                                                            </Stack>
-                                                        </TableCell>
-                                                        {/* -------------------------------------------------------------------------- */}
-                                                        {/*                     Long URL table Column cell End Here                    */}
-                                                        {/* -------------------------------------------------------------------------- */}
-                                                    </TableRow>
-                                                )
-                                            })
-                                        }
-                                    </TableBody>
-                                </Table>
-                                {/* ----------------------------- {End Table Body ----------------------------- */}
-                            </TableContainer>
-                        </Paper>
-                    </>
-                )
-            }
-
-            <Paper sx={{width:{xs:'95%',sm:'90%',md:'80%'}}} >
-                <TableContainer sx={{maxHeight:'450px',fontFamily: 'Noto Serif',background: 'linear-gradient(to right, #cb356b, #bd3f32)'}}>
-                    <Table stickyHeader>
-                    {/* ---------------------------- Start table head ---------------------------- */}
-                        <TableHead>
-                            <TableRow>
-                                {
-                                    columns && columns.map((column)=>(
-                                        <TableCell sx={{bgcolor:'gray',color:'white',fontFamily: 'Noto Serif',fontWeight:'500',letterSpacing:'2px',fontSize:'15px'}} key={column.id}>{column.name}</TableCell>
-                                    ))
-                                }
-                            </TableRow>
-                        </TableHead>
-                        {/* ----------------------------- End table head ----------------------------- */}
-
-                       { /* ---------------------------- Start Table body ---------------------------- */}
-                        <TableBody>
-                            {
-                                rows && rows.map((row,i)=>{
-                                    return(
-                                        <TableRow key={row.id}>
-                                            <TableCell sx={{color:'wheat'}}>{i+1}</TableCell>
-                                            {/* -------------------------------------------------------------------------- */}
-                                            {/*                    Long URL table Column cell start Here                   */}
-                                            {/* -------------------------------------------------------------------------- */}
-                                            <TableCell key={row.id} sx={{color:'whitesmoke'}}>
-                                                <Stack direction="row" spacing={2} sx={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'15px'}}>
-                                                    {row.longUrl}
-                                                    <Box component={'div'}>
-                                                        <Paper sx={{bgcolor:'whitesmoke'}} component={Button} onClick={()=>editUrl(row.id)} ><EditIcon sx={{fontSize:'20px',color:'green',cursor:'pointer'}}/></Paper>
-                                                        <Dialog open={open} onClose={closePopup} fullWidth maxWidth="sm">
-                                                        <DialogTitle>UPDATE LONG URL  <IconButton onClick={closePopup} style={{float:'right'}}><CloseIcon color="primary"/></IconButton>  </DialogTitle>
-                                                            <DialogContent>
-                                                                <Stack spacing={2} margin={2}>
-                                                                <TextField variant="outlined" value={inputValue} onChange={(e)=>setInputValue(e.target.value)}></TextField>
-                                                                <Button onClick={handleSubmit} color="primary" variant="contained">Submit</Button>
-                                                                </Stack>
-                                                            </DialogContent>
-                                                        </Dialog> 
-                                                    </Box>
-                                                </Stack>
-                                            </TableCell>
-                                            {/* -------------------------------------------------------------------------- */}
-                                            {/*                     Long URL table Column cell End Here                    */}
-                                            {/* -------------------------------------------------------------------------- */}
-
-                                            {/* -------------------------------------------------------------------------- */}
-                                            {/*                  Shorten URL table Column cell start Here                  */}
-                                            {/* -------------------------------------------------------------------------- */}
-                                            <TableCell key={row.id-1} sx={{color:'whitesmoke'}}>
-                                                <Stack direction="row" spacing={2} sx={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'15px',cursor:'pointer'}}>
-                                                    {row.sortUrl}
-                                                    <Box component={'div'}>
-                                                        {
-                                                            row.disable ? 
-                                                            <Paper component={Button} sx={{bgcolor:'whitesmoke'}} ><DeleteOutlineIcon sx={{fontSize:'20px',color:'gray'}}/></Paper>
-                                                            :
-                                                            <Paper component={Button} key={row.id}  onClick={()=>openDltPopup(row.id)} ><DeleteOutlineIcon sx={{fontSize:'20px',color:'orangered'}}/></Paper>
-
-                                                        }
-                                                        <Dialog
-                                                            open={dltOpen}
-                                                            onClose={closeDltPopup}
-                                                            aria-labelledby="alert-dialog-title"
-                                                            aria-describedby="alert-dialog-description"
-                                                        >
-                                                            <DialogContent>
-                                                            <DialogContentText id="alert-dialog-description">
-                                                               Do You want to delete Shorten Url?
-                                                            </DialogContentText>
-                                                            </DialogContent>
-                                                            <DialogActions>
-                                                            <Button onClick={closeDltPopup}>NO</Button>
-                                                            <Button onClick={dltShortUrl} autoFocus>
-                                                                YES
-                                                            </Button>
-                                                            </DialogActions>
-                                                        </Dialog> 
-                                                    </Box>
-                                                    
-                                                </Stack>
-                                            </TableCell>
-                                            {/* -------------------------------------------------------------------------- */}
-                                            {/*                     Long URL table Column cell End Here                    */}
-                                            {/* -------------------------------------------------------------------------- */}
-                                        </TableRow>
-                                    )
-                                })
-                            }
-                        </TableBody>
-                    </Table>
-                    {/* ----------------------------- {End Table Body ----------------------------- */}
-                </TableContainer>
-            </Paper>
+                                                                            }
+                                                                            <Dialog
+                                                                                open={dltOpen}
+                                                                                onClose={closeDltPopup}
+                                                                                aria-labelledby="alert-dialog-title"
+                                                                                aria-describedby="alert-dialog-description"
+                                                                            >
+                                                                                <DialogContent>
+                                                                                <DialogContentText id="alert-dialog-description">
+                                                                                Do You want to delete Shorten Url?
+                                                                                </DialogContentText>
+                                                                                </DialogContent>
+                                                                                <DialogActions>
+                                                                                <Button onClick={closeDltPopup}>NO</Button>
+                                                                                <Button onClick={dltShortUrl} autoFocus>
+                                                                                    YES
+                                                                                </Button>
+                                                                                </DialogActions>
+                                                                            </Dialog> 
+                                                                        </Box>
+                                                                        
+                                                                    </Stack>
+                                                                </TableCell>
+                                                                {/* -------------------------------------------------------------------------- */}
+                                                                {/*                     Long URL table Column cell End Here                    */}
+                                                                {/* -------------------------------------------------------------------------- */}
+                                                            </TableRow>
+                                                        )
+                                                    })
+                                                }
+                                            </TableBody>
+                                        </Table>
+                                        {/* ----------------------------- End Table Body ----------------------------- */}
+                                    </TableContainer>
+                                </Paper>
+                                </>
+                            )
+                        }              
         </Box>
     </>
   )

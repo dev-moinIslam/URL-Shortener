@@ -46,11 +46,11 @@ const List = () => {
                             sx={{ 
                                 fontSize: "2rem",
                                 background: '-webkit-linear-gradient(#833ab4, #fd1d1d, #fcb045)',
-                            '-webkit-background-clip': 'text',
-                            '-webkit-text-fill-color': 'transparent',
+                                '-webkit-background-clip': 'text',
+                                '-webkit-text-fill-color': 'transparent',
                             }}
                         >
-                            There is no available data
+                            There is no available history
                         </Typography>
                     </>
                 ):(
