@@ -1,145 +1,106 @@
-import React from 'react'
-import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu';
-import { Link} from 'react-router-dom';
+import * as React from "react";
+import { useState } from "react";
+/* ----------------------------- MUI COMPONENTS ----------------------------- */
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+/* -------------------------------- MUI ICON -------------------------------- */
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
 
 
 
 
-const pages = [
-    { label: 'Home', path: '/' },
-    { label: 'Edit', path: '/edit' },
-    { label: 'List', path:'/list'}
 
-  ]
+
+
+
+
+
+const mainPages = [
+  { label: "Home", path: "/", icon: <HomeOutlinedIcon /> },
+  { label: "Edit", path: "/edit", icon: <HomeOutlinedIcon /> },
+  { label: "History", path: "/list", icon: <AccountBoxOutlinedIcon /> },
+];
 
 const Header = () => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    /* -------------------------------------------------------------------------- */
-    /*                                  All Style                                 */
-    /* -------------------------------------------------------------------------- */
-
-    let logoStyle={
-      mr: 2,
-      display: { xs: 'flex', md: 'none' },
-      flexGrow: 1,
-      fontFamily: 'monospace',
-      fontWeight: 700,
-      letterSpacing: '.3rem',
-      color: 'inherit',
-      textDecoration: 'none',
-    }
-    let mainLogoStyle={
-      mr: 2,
-      display: { xs: 'none', md: 'flex' },
-      fontFamily: 'monospace',
-      fontWeight: 700,
-      letterSpacing: '.3rem',
-      color: 'inherit',
-      textDecoration: 'none',
-    }
-    let btnBoxStyle={flexGrow:1,
-      alignItems:'center',
-      justifyContent:'right',
-      display: { xs: 'none', md: 'flex' } }
+  const location = useLocation();
 
   return (
-    <>
-      
-        <AppBar position="static" sx={{bgcolor:'purple'}}>
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={mainLogoStyle}
-          >
-            URL Shortener
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon/>
-            </IconButton>
-
-            {/* ------------------------- Start navbar menu item ------------------------- */}
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              
-              {pages.map((page,index) => (
-                <MenuItem key={index} component={Link} to={page.path} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.label}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-            {/* ------------------------- End navbar menu item ------------------------- */}
-          </Box>
-          
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={logoStyle}
-          >
-            URL Shortener
-          </Typography>
-          <Box sx={btnBoxStyle}>
-
-            {/* --------------------- Menu Link to another page Start -------------------- */}
-            {pages.map((page,index) => (
-              <Button
-                key={index} 
-                component={Link}
-                to={page.path}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+    <React.Fragment>
+      <CssBaseline />
+      {/* /* ------------------------- Large device Style ------------------------ */}
+      <Box
+        sx={{ flexGrow: 1, display: { xs: "flex", md: "flex", sm: "flex" } }}
+      >
+        <AppBar
+          sx={{
+            position: "fixed",
+            boxShadow: "none",
+            background: "#fbfaf8",
+            borderRradius: "16px",
+            backdropFilter: "blur(5px)",
+            WebkitBackdropFilter: "blur(5px)",
+          }}
+        >
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <Typography sx={{color:'orangered',fontFamily: "Noto Serif",fontStyle:'italic',fontWeight:600,fontSize:'25px'}}>
+                  Shorti<span style={{background:'orangered',color:'white',padding:'2px 5px',borderRadius:'5px'}}>fy</span>  
+              </Typography>
+              <Box
+                sx={{
+                  display: { xs: "none", sm: "flex", md: "flex" },
+                  flexGrow: 1,
+                }}
               >
-                {page.label}
-              </Button>
-            ))}
-            {/* --------------------- Menu Link to another page End -------------------- */}
+              </Box>
+              
 
-          </Box>
-          </Toolbar>
+
+
+                <Box
+                  sx={{
+                    display: { xs: "flex", md: "flex" },
+                    flexGrow: 1,
+                    justifyContent: "center",
+                  }}
+                >
+                  {mainPages.map((page, index) => (
+                    <Button
+                      component={Link}
+                      key={index}
+                      to={page.path}
+                      sx={{
+                        my: 1,
+                        color:
+                          location.pathname === `${page.path}`
+                            ? "GrayText"
+                            : "black",
+                        fontFamily: "Poppins",
+                        fontWeight: 400,
+                        textTransform: "none",
+                        fontSize: { xs: "11px", sm: "14px" },
+                      }}
+                    >
+                      {page.label}
+                    </Button>
+                  ))}
+                </Box>
+            </Toolbar>
           </Container>
         </AppBar>
- 
-      
-    </>
-  )
-}
+      </Box>
+    </React.Fragment>
+  );
+};
 
-export default Header
+export default Header;
