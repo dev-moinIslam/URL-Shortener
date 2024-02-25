@@ -20,8 +20,6 @@ const Edit = () => {
     const [isDltItem,setIsDltItem]=useState(null)
 
 
- 
-
     /* -------------------------------------------------------------------------- */
     /*                            Update Functionality Start                      */
     /* -------------------------------------------------------------------------- */
@@ -49,7 +47,7 @@ const Edit = () => {
           localStorage.setItem('urlDatas', JSON.stringify(newUpdatedUrl));
           setRows(newUpdatedUrl);
           setOpen(false);
-          toast.success('Successfully updated Long URL and its Equivalent Shorten URL')
+          toast.success('Successfully updated URL')
     }
 
          /* -------------------------------------------------------------------------- */
@@ -164,7 +162,6 @@ const Edit = () => {
            } 
 
     },[])
-
 
 
   return (
