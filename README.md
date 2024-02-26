@@ -12,7 +12,7 @@ In this README, I'll provide an overview of the project, explain how to set it u
 - User can shorten long URL
 - When user update long URL its equivalent short URL also updated
 - User can also delete shorten URL
-- User can find all created Short URL in List page
+- User can find all created Short URL in History page
 
 ## Installation
 
