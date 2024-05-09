@@ -21,7 +21,7 @@ To run this project locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/dev-moinIslam/URL-Shortener.git
+   git clone https://github.com/dev-moinislam/URL-Shortener.git
    cd URL-Shortener    
 # 
 2. **Install dependencies:**
